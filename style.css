@@ -24,7 +24,26 @@ Global Styles
 
 body {
   margin: 0;
+  /* background: linear-gradient(
+    -45deg,
+    rgb(255, 111, 207),
+    rgb(0, 166, 255),
+    rgb(0, 255, 26)
+  );
+  background-size: 200% 200%;
+  animation: gradient 10s ease infinite; */
 }
+/* @keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+} */
 
 .board {
   width: 100vw;
@@ -41,7 +60,7 @@ body {
 .board.cross .cell:not(.cross):not(.circle):hover::before,
 .board.cross .cell:not(.cross):not(.circle):hover::after,
 .board.circle .cell:not(.cross):not(.circle):hover::before {
-  background-color: lightgray !important;
+  background: lightgray !important;
 }
 
 /* cell */
@@ -82,7 +101,14 @@ body {
   content: "";
   width: calc(var(--cross-size) * 0.15);
   height: var(--cross-size);
-  background-color: #000;
+  background-image: linear-gradient(
+    to top,
+    #78b3ed,
+    #5ea5ef,
+    #4396ef,
+    #2786ef,
+    #0076ed
+  );
 }
 .cell.cross::before,
 .board.cross .cell:hover::before {
@@ -111,17 +137,24 @@ body {
 .board.circle .cell:not(.cross):not(.circle):hover::before {
   width: var(--circle-size);
   height: var(--circle-size);
-  background-color: #000;
+  background-image: linear-gradient(
+    to top,
+    #b4e58b,
+    #a9dd72,
+    #a0d557,
+    #97cd39,
+    #8fc400
+  );
 }
 .cell.circle::after,
 .board.circle .cell:not(.cross):not(.circle):hover::after {
   width: calc(var(--circle-size) * 0.7);
   height: calc(var(--circle-size) * 0.7);
-  background-color: #fff;
+  background: #fff;
 }
 
-/* winning-message */
-.winning-message {
+/* result */
+.result {
   display: none;
   position: fixed;
   top: 0;
@@ -135,11 +168,26 @@ body {
   font-size: 5rem;
   flex-direction: column;
 }
-.winning-message.show {
+.result.show {
   display: flex;
 }
+.result-text {
+  background: -webkit-linear-gradient(#fff, #777);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.result-text.cross {
+  background: -webkit-linear-gradient(#78b3ed, #0076ed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.result-text.circle {
+  background: -webkit-linear-gradient(#b4e58b, #8fc400);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-.winning-message button {
+.result button {
   font-size: 3rem;
   background-color: #fff;
   border: 1px solid #000;
@@ -147,7 +195,7 @@ body {
   cursor: pointer;
   border-radius: 0.1em;
 }
-.winning-message button:hover {
+.result button:hover {
   background-color: #000;
   border-color: #fff;
   color: #fff;
